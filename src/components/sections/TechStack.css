@@ -1,0 +1,41 @@
+.techstack {
+  padding-top: 0;
+}
+
+.techstack__grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.techstack__icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  transition: transform var(--transition), opacity var(--transition);
+  cursor: default;
+  overflow: hidden;
+}
+
+.techstack__icon:hover {
+  transform: translateY(-2px);
+  opacity: 0.85;
+}
+
+.techstack__icon svg {
+  border-radius: 4px;
+}
+
+@media (max-width: 640px) {
+  .techstack__grid {
+    gap: 10px;
+  }
+  .techstack__icon {
+    width: 36px;
+    height: 36px;
+  }
+}

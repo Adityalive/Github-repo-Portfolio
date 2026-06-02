@@ -1,0 +1,172 @@
+/* ============================================
+   GLOBAL DESIGN TOKENS & RESET
+   siddz.com-inspired dark portfolio
+   ============================================ */
+
+:root {
+  /* ---- Color Tokens ---- */
+  --bg: #0c0c0c;
+  --bg-2: #111111;
+  --surface: #161616;
+  --surface-2: #1e1e1e;
+  --surface-3: #252525;
+  --border: rgba(255, 255, 255, 0.07);
+  --border-hover: rgba(255, 255, 255, 0.14);
+
+  --text: #e8e8e4;
+  --text-muted: #666662;
+  --text-subtle: #444440;
+  --text-label: #555552;
+
+  --accent: #4ade80;
+  --accent-dim: rgba(74, 222, 128, 0.15);
+
+  --link: #a0a09a;
+  --link-hover: #e8e8e4;
+
+  /* ---- Typography ---- */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+
+  /* ---- Spacing ---- */
+  --container-width: 1100px;
+  --section-gap: 96px;
+  --card-radius: 10px;
+  --pill-radius: 6px;
+
+  /* ---- Motion ---- */
+  --transition: 200ms ease;
+  --transition-slow: 400ms ease;
+}
+
+[data-theme="light"] {
+  --bg: #f7f6f2;
+  --bg-2: #f2f1ed;
+  --surface: #ededea;
+  --surface-2: #e8e7e3;
+  --surface-3: #e0deda;
+  --border: rgba(0, 0, 0, 0.08);
+  --border-hover: rgba(0, 0, 0, 0.15);
+
+  --text: #1a1a18;
+  --text-muted: #888880;
+  --text-subtle: #aaa8a2;
+  --text-label: #888880;
+
+  --accent: #16a34a;
+  --accent-dim: rgba(22, 163, 74, 0.12);
+
+  --link: #6b6b68;
+  --link-hover: #1a1a18;
+}
+
+/* ============================================
+   RESET
+   ============================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.6;
+  transition: background-color var(--transition-slow), color var(--transition-slow);
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+/* ============================================
+   LAYOUT UTILITIES
+   ============================================ */
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.section {
+  padding: 72px 0;
+}
+
+/* ============================================
+   SECTION LABEL
+   ============================================ */
+.section-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-label);
+  margin-bottom: 32px;
+}
+
+/* ============================================
+   FADE-IN ANIMATION (IntersectionObserver)
+   ============================================ */
+.fade-in {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--surface-3);
+  border-radius: 2px;
+}
+
+/* ============================================
+   RESPONSIVE BREAKPOINTS
+   ============================================ */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 20px;
+  }
+  .section {
+    padding: 56px 0;
+  }
+}

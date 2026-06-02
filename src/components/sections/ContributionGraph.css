@@ -1,0 +1,124 @@
+.contrib {
+  padding-top: 0;
+  padding-bottom: 48px;
+}
+
+.contrib__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Month labels */
+.contrib__months {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1px;
+  margin-bottom: 2px;
+}
+
+.contrib__month {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+  min-width: 0;
+  flex: 1;
+  text-align: left;
+}
+
+/* Grid */
+.contrib__grid {
+  display: flex;
+  gap: 3px;
+}
+
+.contrib__week {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.contrib__cell {
+  width: 11px;
+  height: 11px;
+  border-radius: 2px;
+  transition: opacity 0.15s ease;
+}
+
+.contrib__cell:hover {
+  opacity: 0.7;
+}
+
+/* Dark theme levels */
+.contrib__cell--0 { background: var(--surface-2); }
+.contrib__cell--1 { background: #2c2c2c; }
+.contrib__cell--2 { background: #404040; }
+.contrib__cell--3 { background: #5a5a5a; }
+.contrib__cell--4 { background: #909090; }
+
+[data-theme="light"] .contrib__cell--0 { background: #e8e7e3; }
+[data-theme="light"] .contrib__cell--1 { background: #c8c7c2; }
+[data-theme="light"] .contrib__cell--2 { background: #a8a7a2; }
+[data-theme="light"] .contrib__cell--3 { background: #787772; }
+[data-theme="light"] .contrib__cell--4 { background: #484742; }
+
+/* Footer */
+.contrib__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+
+.contrib__count {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.contrib__count-label {
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+}
+
+.contrib__legend {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.contrib__legend-label {
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+  font-weight: 500;
+}
+
+.contrib__legend .contrib__cell {
+  width: 10px;
+  height: 10px;
+}
+
+/* Responsive: shrink cells on small screens */
+@media (max-width: 768px) {
+  .contrib__cell {
+    width: 7px;
+    height: 7px;
+    border-radius: 1.5px;
+  }
+  .contrib__grid {
+    gap: 2px;
+  }
+  .contrib__week {
+    gap: 2px;
+  }
+  .contrib__months {
+    display: none;
+  }
+}
