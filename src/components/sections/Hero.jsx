@@ -71,13 +71,17 @@ export default function Hero() {
           </div>
 
           {/* Intro paragraph */}
-          <p className="hero__bio">
-            I build full-stack web products end-to-end, obsessing over small details that make
-            software feel right to use.{' '}
-            Currently working with{' '}
-            <strong>TypeScript</strong>, <strong>React</strong>, <strong>Next.js</strong>, and{' '}
-            <strong>Node.js</strong>.
-          </p>
+          <div className="hero__bio">
+            <p>
+              I build full-stack web products end-to-end, obsessing over small details that make
+              software feel right to use.
+            </p>
+            <p>
+              Currently working with{' '}
+              <strong>TypeScript</strong>, <strong>React</strong>, <strong>Next.js</strong>, and{' '}
+              <strong>Tailwind CSS</strong>.
+            </p>
+          </div>
 
           {/* Status strip */}
           <div className="hero__status">

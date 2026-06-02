@@ -4,38 +4,46 @@ import './ContributionGraph.css'
 // Months to display as column labels (53 weeks)
 const MONTHS = ['Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May']
 
-// Generate a realistic mock contribution grid (53 weeks × 7 days)
-function generateMockGrid() {
-  const weeks = []
-  const totalWeeks = 53
-  for (let w = 0; w < totalWeeks; w++) {
-    const days = []
-    // More recent weeks (closer to end) have higher activity
-    const recencyBoost = w / totalWeeks
-    for (let d = 0; d < 7; d++) {
-      const rand = Math.random()
-      // ~35% chance of 0, rest gets a level 1-4 weighted by recency
-      let level = 0
-      if (rand > 0.38) {
-        const base = rand * (1 + recencyBoost * 1.5)
-        if (base > 1.5) level = 4
-        else if (base > 1.0) level = 3
-        else if (base > 0.7) level = 2
-        else level = 1
-      }
-      days.push(level)
-    }
-    weeks.push(days)
-  }
-  return weeks
+// Map GitHub API levels to our CSS levels
+const LEVEL_MAP = {
+  NONE: 0,
+  FIRST_QUARTILE: 1,
+  SECOND_QUARTILE: 2,
+  THIRD_QUARTILE: 3,
+  FOURTH_QUARTILE: 4,
 }
 
-const GITHUB_USERNAME = 'adityakumar' // change to real username if needed
+// TODO: Replace with your actual GitHub username!
+const GITHUB_USERNAME = 'Adityalive'
 
 export default function ContributionGraph() {
   const ref = useRef(null)
-  const [weeks] = useState(() => generateMockGrid())
-  const [total] = useState(910)
+  const [weeks, setWeeks] = useState(() => Array.from({ length: 53 }, () => Array(7).fill(0)))
+  const [total, setTotal] = useState(0)
+
+  useEffect(() => {
+    async function fetchContributions() {
+      try {
+        const res = await fetch(`https://github-contributions-api.deno.dev/${GITHUB_USERNAME}.json`)
+        if (!res.ok) throw new Error('Failed to fetch')
+        const data = await res.json()
+        
+        let totalCount = 0
+        const parsedWeeks = data.contributions.map((week) =>
+          week.map((day) => {
+            totalCount += day.contributionCount
+            return LEVEL_MAP[day.contributionLevel] || 0
+          })
+        )
+        setWeeks(parsedWeeks)
+        setTotal(totalCount)
+      } catch (err) {
+        console.error('Error fetching GitHub contributions:', err)
+      }
+    }
+    fetchContributions()
+  }, [])
+
 
   useEffect(() => {
     const el = ref.current
